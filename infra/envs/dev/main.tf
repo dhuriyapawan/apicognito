@@ -1,4 +1,4 @@
-module "app" {
+module "modules" {
   source = "../../modules/apigateway"
 
   environment = var.environment
