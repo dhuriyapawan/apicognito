@@ -11,7 +11,7 @@ module "dynamodb" {
 
 # Cognito
 module "cognito" {
-  source = "../../../modules/cognito"
+  source = "infra/modules/cognito"
 
   user_pool_name = "app-user-pool"
 }
@@ -26,7 +26,7 @@ resource "aws_lambda_layer_version" "common_layer" {
 
 # Lambda Function
 module "lambda" {
-  source = "../../../modules/lambda"
+  source = "infra/modules/lambda"
 
   function_name = "app-function"
   handler       = "index.handler"
@@ -41,7 +41,7 @@ module "lambda" {
 
 # API Gateway
 module "apigateway" {
-  source = "../../../modules/apigateway"
+  source = "infra/modules/apigateway"
 
   lambda_invoke_arn = module.lambda.invoke_arn
   user_pool_arn     = module.cognito.user_pool_arn
