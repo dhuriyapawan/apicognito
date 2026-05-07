@@ -21,6 +21,6 @@ resource "aws_apigatewayv2_api" "main" {
 resource "aws_apigatewayv2_route" "users" {
   api_id    = aws_apigatewayv2_api.main.id
   route_key = "GET /users"
-
-  target = "integrations/${aws_apigatewayv2_integration.users.id}"
+}}
+  #target = "integrations/${aws_apigatewayv2_integration.users.id}"
 }
