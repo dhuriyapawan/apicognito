@@ -4,7 +4,7 @@ provider "aws" {
 
 # DynamoDB
 module "dynamodb" {
-  source = "../../../modules/dynamodb"
+  source = "infra/modules/dynamodb"
 
   table_name = "app-table"
 }
