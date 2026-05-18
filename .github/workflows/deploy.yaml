@@ -3,7 +3,7 @@ name: Deploy Terraform
 on:
   push:
     branches:
-       [devops1]
+       - devops2
 
 jobs:
   terraform:
