@@ -1,18 +1,14 @@
-#!/bin/bash
-set -e
-TABLE = "cloudguard-violations"
+#!/usr/bin/env bash
+set -euo pipefail
 
-echo "Checking if DynamoDB tabele Exists.."
+TABLE="cloudguard-violations"
 
-aws dynamodb describe-table \
-    --table-name $TABLE >/dev/null 2>&1
+echo "Checking DynamoDB table: $TABLE"
 
-if [&? -eq 0 ]; then
+if aws dynamodb describe-table --table-name "$TABLE" >/dev/null 2>&1; then
+  echo "Table exists → importing into Terraform state"
 
-    echo "Table exists.Importing inot terraform state .."
-    terraform import aws_dynamodb-table.violations $TABLE || true
-
+  terraform import aws_dynamodb_table.violations "$TABLE" || true
 else
-    echo "Table does not exist.Terraform will create i"
-
-fi 
+  echo "Table not found → Terraform will create it"
+fi
