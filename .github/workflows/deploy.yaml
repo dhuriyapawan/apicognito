@@ -25,6 +25,8 @@ jobs:
 
       - name: Terraform Init
         run: terraform -chdir=terraform init
+      - name: Import existing resources
+        run: bash scripts/import.sh
         
 
       - name: Terraform Plan
