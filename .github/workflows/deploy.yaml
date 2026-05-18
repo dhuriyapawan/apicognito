@@ -31,10 +31,10 @@ jobs:
         run: terraform -chdir=terraform plan -detailed-exitcode
         continue-on-error: true
 
-      - name: Manual Approval Gate
-        uses: trstringer/manual-approval@v1
-        with:
-          approvers: your-github-username
+    #   - name: Manual Approval Gate
+    #     uses: trstringer/manual-approval@v1
+    #     with:
+    #       approvers: your-github-username
 
       - name: Terraform Apply
         run: terraform -chdir=terraform apply -auto-approve
