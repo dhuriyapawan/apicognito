@@ -47,7 +47,7 @@ variable "db_password" {
 #   value       = aws_db_instance.main.endpoint
 # }
 
-output "rds_instance_port" {
-  description = "RDS instance port"
-  value       = aws_db_instance.main.port
-}
+# output "rds_instance_port" {
+#   description = "RDS instance port"
+#   value       = aws_db_instance.main.port
+# }
