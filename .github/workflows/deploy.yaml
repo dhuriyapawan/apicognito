@@ -39,11 +39,13 @@ jobs:
 
     # Validate
     - name: Terraform Validate
-      run: terraform -chdir=
+      run: terraform -chdir=terraform/environments/dev validate
+
     # Plan
-    - name: Terraform Plan (safe mode)
-      run: terraform -chdir=terraform plan -detailed-exitcode
+    - name: Terraform Plan
+      run: terraform -chdir=terraform/environments/dev plan -out=tfplan
 
     # Apply (only main branch)
     - name: Terraform Apply
-      run: terraform -chdir=terraform apply -auto-approve
+      if: github.ref == 'refs/heads/main'
+      run: terraform -chdir=terraform/environments/dev apply -auto-approve tfplan
