@@ -44,9 +44,9 @@ module "rds" {
   vpc_id             = module.vpc.vpc_id
   subnet_ids         = module.vpc.private_subnet_ids
   security_group_ids = [module.security.db_security_group_id]
-  db_name            = var.db_name
-  db_username        = var.db_username
-  db_password        = var.db_password
+  db_name            = "db"
+  db_username        = "test"
+  db_password        = "Abc123!@"
 }
 
 # Application Load Balancer Module

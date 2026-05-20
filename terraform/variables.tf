@@ -34,23 +34,23 @@ variable "availability_zones" {
   default     = ["us-east-1a", "us-east-1b"]
 }
 
-variable "db_name" {
-  description = "Name of the database"
-  type        = string
-  default     = "javaapp"
-}
+# variable "db_name" {
+#   description = "Name of the database"
+#   type        = string
+#   default     = "javaapp"
+# }
 
-variable "db_username" {
-  description = "Database master username"
-  type        = string
-  sensitive   = true
-}
+# variable "db_username" {
+#   description = "Database master username"
+#   type        = string
+#   sensitive   = true
+# }
 
-variable "db_password" {
-  description = "Database master password"
-  type        = string
-  sensitive   = true
-}
+# variable "db_password" {
+#   description = "Database master password"
+#   type        = string
+#   sensitive   = true
+# }
 
 variable "instance_type" {
   description = "EC2 instance type"
