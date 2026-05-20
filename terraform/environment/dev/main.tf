@@ -29,13 +29,17 @@ module "security_groups" {
 module "rds" {
   source = "../../modules/rds"
 
-  name        = "app-db"
+  name        = var.name
   environment = var.environment
 
   vpc_id             = module.vpc.vpc_id
   private_subnet_ids = module.vpc.private_subnet_ids
 
-  secret_arn = module.db_secret.secret_arn
+  db_name  = "db"
+  username = "admin"
+  password = "Abc123!@"
+
+  allowed_security_group_ids = [module.eks.security_group_id]
 }
 
 module "redis" {

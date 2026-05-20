@@ -96,6 +96,3 @@ variable "allowed_security_group_ids" {
   type = list(string)
 }
   
-variable "secret_arn" {
-  type = string
-}
