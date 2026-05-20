@@ -138,12 +138,12 @@ variable "allowed_ssh_cidr_blocks" {
 # Monitoring
 # ==========================================
 
-variable "alert_email" {
-  description = "Email address for monitoring alerts"
-  type        = string
+# variable "alert_email" {
+#   description = "Email address for monitoring alerts"
+#   type        = string
 
-  validation {
-    condition     = can(regex("^.+@.+\\..+$", var.alert_email))
-    error_message = "Please provide a valid email address."
-  }
-}
+#   validation {
+#     condition     = can(regex("^.+@.+\\..+$", var.alert_email))
+#     error_message = "Please provide a valid email address."
+#   }
+# }
