@@ -1,23 +1,6 @@
-# RDS Module
-
 variable "environment" {
   description = "Environment name"
   type        = string
-}
-
-variable "vpc_id" {
-  description = "VPC ID"
-  type        = string
-}
-
-variable "subnet_ids" {
-  description = "List of subnet IDs for RDS"
-  type        = list(string)
-}
-
-variable "security_group_ids" {
-  description = "List of security group IDs"
-  type        = list(string)
 }
 
 variable "db_name" {
@@ -37,17 +20,12 @@ variable "db_password" {
   sensitive   = true
 }
 
-# output "rds_instance_id" {
-#   description = "RDS instance ID"
-#   value       = aws_db_instance.main.id
-# }
+variable "subnet_ids" {
+  description = "Private subnet IDs for RDS"
+  type        = list(string)
+}
 
-# output "rds_instance_endpoint" {
-#   description = "RDS instance endpoint"
-#   value       = aws_db_instance.main.endpoint
-# }
-
-# output "rds_instance_port" {
-#   description = "RDS instance port"
-#   value       = aws_db_instance.main.port
-# }
+variable "security_group_ids" {
+  description = "Security group IDs for RDS"
+  type        = list(string)
+}
