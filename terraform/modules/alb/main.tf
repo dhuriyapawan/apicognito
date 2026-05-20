@@ -47,7 +47,7 @@ resource "aws_lb_listener" "main" {
     target_group_arn = aws_lb_target_group.main.arn
   }
 }
-resource "aws_security_group" "alb " {
+resource "aws_security_group" "alb" {
     name = "${var.environment}-alb-sg"
     description = "security group for alb"
     vpc_id = var.vpc_id

@@ -67,11 +67,12 @@ module "asg" {
   desired_capacity  = var.asg_desired_capacity
 }
 
-# CloudWatch Module
-module "monitoring" {
-  source = "./modules/monitoring"
+# module "monitoring" {
+#   source = "./modules/monitoring"
 
-  environment = var.environment
-  rds_instance_id = module.rds.rds_instance_id
-  asg_name = module.asg.asg_name
-} 
+#   environment     = var.environment
+#   rds_instance_id = module.rds.rds_instance_id
+#   asg_name        = module.asg.asg_name
+
+#   sns_topic_arn = aws_sns_topic.alerts.arn
+# }
