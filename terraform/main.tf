@@ -54,8 +54,7 @@ module "alb" {
 # Auto Scaling Group Module
 module "asg" {
   source = "./modules/asg"
-    ami_id = ""
-
+  key_name = "key"
   environment = var.environment
 
   private_subnet_ids = module.vpc.private_subnet_ids
