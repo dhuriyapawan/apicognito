@@ -18,7 +18,7 @@ module "vpc" {
     public_subnets = var.public_subnets
     private_subnets = var.private_subnets
 
-    azs = availability_zones
+    azs = var.availability_zones
 }
 # Security Module
 module "security" {
@@ -55,17 +55,23 @@ module "alb" {
 module "asg" {
   source = "./modules/asg"
 
-  environment         = var.environment
-  vpc_id             = module.vpc.vpc_id
-  private_subnet_ids = module.vpc.private_subnet_ids
-  security_group_ids = [module.security.app_security_group_id]
-  target_group_arns  = [module.alb.target_group_arn]
-  instance_type      = var.instance_type
-  key_name           = aws_iam_instance_profile.ec2_profile.name
+  environment = var.environment
 
-  min_size          = var.asg_min_size
-  max_size          = var.asg_max_size
-  desired_capacity  = var.asg_desired_capacity
+  private_subnet_ids = module.vpc.private_subnet_ids
+
+  security_group_ids = [
+    module.security.app_security_group_id
+  ]
+
+  target_group_arns = [
+    module.alb.target_group_arn
+  ]
+
+  instance_type = var.instance_type
+
+  min_size         = var.asg_min_size
+  max_size         = var.asg_max_size
+  desired_capacity = var.asg_desired_capacity
 }
 
 module "monitoring" {

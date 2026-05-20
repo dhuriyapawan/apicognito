@@ -13,3 +13,11 @@ variable "allowed_ssh_cidr_blocks" {
   type        = list(string)
   default     = ["0.0.0.0/0"]  # WARNING: Restrict this in production
 } 
+
+output "app_security_group_id" {
+  value = aws_security_group.app.id
+}
+
+output "db_security_group_id" {
+  value = aws_security_group.db.id
+}
