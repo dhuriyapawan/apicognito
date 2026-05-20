@@ -35,7 +35,7 @@ jobs:
 
     # Init
     - name: Terraform Init
-      run: terraform -chdir=terraform init
+      run: terraform -chdir=terraform/environments/dev init
 
     # Validate
     - name: Terraform Validate
