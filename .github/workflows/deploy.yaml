@@ -35,17 +35,17 @@ jobs:
 
     # Init
     - name: Terraform Init
-      run: terraform -chdir=terraform/environments/dev init
+      run: terraform -chdir=terraform/environment/dev init
 
     # Validate
     - name: Terraform Validate
-      run: terraform -chdir=terraform/environments/dev validate
+      run: terraform -chdir=terraform/environment/dev validate
 
     # Plan
     - name: Terraform Plan
-      run: terraform -chdir=terraform/environments/dev plan -out=tfplan
+      run: terraform -chdir=terraform/environment/dev plan -out=tfplan
 
     # Apply (only main branch)
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main'
-      run: terraform -chdir=terraform/environments/dev apply -auto-approve tfplan
+      run: terraform -chdir=terraform/environment/dev apply -auto-approve tfplan
