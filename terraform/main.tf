@@ -54,6 +54,7 @@ module "alb" {
 # Auto Scaling Group Module
 module "asg" {
   source = "./modules/asg"
+    ami_id = ""
 
   environment = var.environment
 
