@@ -23,11 +23,9 @@ jobs:
 
       - name: Terraform Init
         run: terraform -chdir=terraform init
-        
 
-    #   # 🔥 AUTO DISCOVERY STEP
-    #   - name: Discover existing AWS resources
-    #     run: bash scripts/discover.sh
+
+    
 
       - name: Terraform Plan (safe mode)
         run: terraform -chdir=terraform plan -detailed-exitcode

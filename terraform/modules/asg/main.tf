@@ -1,55 +1,61 @@
-# ==========================================
-# AUTO SCALING GROUP MODULE
-# modules/asg/main.tf
-# ==========================================
+# ASG Module
 
-# ==========================================
-# IAM ROLE FOR SSM
-# ==========================================
+resource "aws_launch_template" "main" {
+  name_prefix   = "${var.environment}-lt"
+  image_id      = "ami-0c02fb55956c7d316" # Amazon Linux 2
+  instance_type = var.instance_type
+  key_name      = var.key_name
 
+  vpc_security_group_ids = var.security_group_ids
 
+  user_data = base64encode(<<-EOF
+              #!/bin/bash
+              yum update -y
+              yum install -y java-11-amazon-corretto
+              yum install -y tomcat
+              systemctl enable tomcat
+              systemctl start tomcat
+              EOF
+  )
 
-# ==========================================
-# ATTACH SSM POLICY
-# ==========================================
-
-
-# ==========================================
-# INSTANCE PROFILE
-# ==========================================
-
-
-# ==========================================
-# LAUNCH TEMPLATE
-# ==========================================
-
-
-
-
-
-# ==========================================
-# AUTO SCALING GROUP
-# ==========================================
-
-
-# ==========================================
-# AUTO SCALING POLICY
-# ==========================================
-
-resource "aws_autoscaling_policy" "cpu_target" {
-
-  name = "${var.environment}-cpu-scaling-policy"
-
-  autoscaling_group_name = aws_autoscaling_group.app_asg.name
-
-  policy_type = "TargetTrackingScaling"
-
-  target_tracking_configuration {
-
-    predefined_metric_specification {
-      predefined_metric_type = "ASGAverageCPUUtilization"
+  tag_specifications {
+    resource_type = "instance"
+    tags = {
+      Name        = "${var.environment}-web-instance"
+      Environment = var.environment
     }
+  }
 
-    target_value = 70
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+resource "aws_autoscaling_group" "main" {
+  name                = "${var.environment}-asg"
+  vpc_zone_identifier = var.private_subnet_ids
+  target_group_arns   = var.target_group_arns
+  health_check_type   = "ELB"
+  health_check_grace_period = 300
+
+  min_size         = var.min_size
+  max_size         = var.max_size
+  desired_capacity = var.desired_capacity
+
+  launch_template {
+    id      = aws_launch_template.main.id
+    version = "$Latest"
+  }
+
+  tag {
+    key                 = "Name"
+    value               = "${var.environment}-web-instance"
+    propagate_at_launch = true
+  }
+
+  tag {
+    key                 = "Environment"
+    value               = var.environment
+    propagate_at_launch = true
   }
 }

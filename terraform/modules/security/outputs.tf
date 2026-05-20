@@ -1,23 +1,19 @@
-variable "environment" {
-  description = "Environment name"
-  type        = string
+output "alb_security_group_id" {
+  description = "ID of the ALB security group"
+  value       = aws_security_group.alb.id
 }
-
-variable "vpc_id" {
-  description = "ID of the VPC"
-  type        = string
-}
-
-variable "allowed_ssh_cidr_blocks" {
-  description = "List of CIDR blocks allowed to SSH to bastion host"
-  type        = list(string)
-  default     = ["0.0.0.0/0"]  # WARNING: Restrict this in production
-} 
 
 output "app_security_group_id" {
-  value = aws_security_group.app.id
+  description = "ID of the application security group"
+  value       = aws_security_group.app.id
 }
 
 output "db_security_group_id" {
-  value = aws_security_group.db.id
+  description = "ID of the database security group"
+  value       = aws_security_group.db.id
 }
+
+output "bastion_security_group_id" {
+  description = "ID of the bastion host security group"
+  value       = aws_security_group.bastion.id
+} 

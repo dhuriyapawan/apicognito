@@ -57,32 +57,3 @@ output "vpc_cidr_block" {
   description = "CIDR block of the VPC"
   value       = aws_vpc.main.cidr_block
 } 
-# ==========================================
-# APPLICATION SECURITY GROUP
-# ==========================================
-
-output "app_security_group_id" {
-  description = "Application Security Group ID"
-
-  value = aws_security_group.app.id
-}
-
-# ==========================================
-# DATABASE SECURITY GROUP
-# ==========================================
-
-output "db_security_group_id" {
-  description = "Database Security Group ID"
-
-  value = aws_security_group.db.id
-}
-
-# ==========================================
-# ALB SECURITY GROUP
-# ==========================================
-
-output "alb_security_group_id" {
-  description = "ALB Security Group ID"
-
-  value = aws_security_group.alb.id
-}

@@ -10,9 +10,7 @@ resource "aws_vpc" "main" {
     Environment = var.environment
   }
 }
-resource "aws_security_group" "app" {
-  name = "${var.environment}-app-sg"
-}
+
 # Internet Gateway
 resource "aws_internet_gateway" "main" {
   vpc_id = aws_vpc.main.id
@@ -54,7 +52,7 @@ resource "aws_subnet" "private" {
 # Elastic IP for NAT Gateway
 resource "aws_eip" "nat" {
   count = length(var.public_subnets)
-  domain = "vpc"
+  vpc   = true
 
   tags = {
     Name        = "${var.environment}-nat-eip-${count.index + 1}"

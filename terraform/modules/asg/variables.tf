@@ -5,10 +5,10 @@ variable "environment" {
   type        = string
 }
 
-# variable "vpc_id" {
-#   description = "VPC ID"
-#   type        = string
-# }
+variable "vpc_id" {
+  description = "VPC ID"
+  type        = string
+}
 
 variable "private_subnet_ids" {
   description = "List of private subnet IDs"
@@ -50,7 +50,7 @@ variable "desired_capacity" {
   type        = number
 }
 
-# output "asg_name" {
-#   description = "Auto Scaling Group name"
-#   value       = aws_autoscaling_group.main.name
-# }
+output "asg_name" {
+  description = "Auto Scaling Group name"
+  value       = aws_autoscaling_group.main.name
+}

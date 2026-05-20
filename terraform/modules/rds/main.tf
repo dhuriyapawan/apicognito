@@ -23,8 +23,8 @@ resource "aws_db_instance" "main" {
   storage_encrypted     = true
 
   db_name  = var.db_name
-  username = local.rds_secret.username
-  password = local.rds_secret.password
+  username = var.db_username
+  password = var.db_password
 
   db_subnet_group_name   = aws_db_subnet_group.main.name
   vpc_security_group_ids = var.security_group_ids

@@ -116,4 +116,4 @@ resource "aws_security_group" "bastion" {
     Name        = "${var.environment}-bastion-sg"
     Environment = var.environment
   }
-}  
+} 
