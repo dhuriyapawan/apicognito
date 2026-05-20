@@ -45,7 +45,7 @@ module "redis" {
     module.eks.node_security_group_id
   ]
 }
-module "ecr_app" {
+module "ecr" {
   source = "../../modules/ecr"
 
   name        = "app-service"
