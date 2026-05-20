@@ -30,7 +30,7 @@ jobs:
 
       - name: Terraform Plan (safe mode)
         run: terraform -chdir=terraform plan -detailed-exitcode
-        continue-on-error: true
+        continue-on-error: false
 
     #   - name: Manual Approval Gate
     #     uses: trstringer/manual-approval@v1
