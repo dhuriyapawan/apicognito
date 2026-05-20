@@ -2,8 +2,10 @@ resource "aws_launch_template" "main" {
   name_prefix = "${var.environment}-lt"
   image_id = "ami-091138d0f0d41ff90" # 
   instance_type = var.instance_type
-  key_name = var.key_name
-
+  # key_name = var.key_name
+  iam_instance_profile {
+    name = aws_iam_instance_profile.ec2_profile.name
+  }
   vpc_security_group_ids = var.security_group_ids
 
   user_data =  base64decode(file ("${path.module}/userdata.sh"))

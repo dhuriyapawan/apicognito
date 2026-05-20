@@ -97,10 +97,10 @@ variable "instance_type" {
   default     = "t3.micro"
 }
 
-variable "key_name" {
-  description = "Name of the SSH key pair"
-  type        = string
-}
+# variable "key_name" {
+#   description = "Name of the SSH key pair"
+#   type        = string
+# }
 
 variable "asg_min_size" {
   description = "Minimum size of Auto Scaling Group"

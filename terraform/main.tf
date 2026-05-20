@@ -38,8 +38,8 @@ module "rds" {
   subnet_ids         = module.vpc.private_subnet_ids
   security_group_ids = [module.security.db_security_group_id]
   db_name            = var.db_name
-  db_username        = var.db_username
-  db_password        = var.db_password
+  db_username        = local.rds_secret.username
+  db_password        = local.rds_secret.password
 }
 
 # Application Load Balancer Module
@@ -61,7 +61,8 @@ module "asg" {
   security_group_ids = [module.security.app_security_group_id]
   target_group_arns  = [module.alb.target_group_arn]
   instance_type      = var.instance_type
-  key_name           = var.key_name
+  key_name           = aws_iam_instance_profile.ec2_profile.name
+
   min_size          = var.asg_min_size
   max_size          = var.asg_max_size
   desired_capacity  = var.asg_desired_capacity
