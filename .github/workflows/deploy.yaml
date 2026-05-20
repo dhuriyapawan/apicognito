@@ -35,17 +35,15 @@ jobs:
 
     # Init
     - name: Terraform Init
-      run: terraform -chdir=infra/environments/dev init
+      run: terraform -chdir=terraform init
 
     # Validate
     - name: Terraform Validate
-      run: terraform -chdir=infra/environments/dev validate
-
+      run: terraform -chdir=
     # Plan
-    - name: Terraform Plan
-      run: terraform -chdir=infra/environments/dev plan -out=tfplan
+    - name: Terraform Plan (safe mode)
+      run: terraform -chdir=terraform plan -detailed-exitcode
 
     # Apply (only main branch)
     - name: Terraform Apply
-      if: github.ref == 'refs/heads/main'
-      run: terraform -chdir=infra/environments/dev apply -auto-approve tfplan
+      run: terraform -chdir=terraform apply -auto-approve
