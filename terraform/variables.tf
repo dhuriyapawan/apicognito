@@ -75,17 +75,17 @@ variable "db_name" {
   default     = "javaapp"
 }
 
-variable "db_username" {
-  description = "Database master username"
-  type        = string
-  sensitive   = true
-}
+# variable "db_username" {
+#   description = "Database master username"
+#   type        = string
+#   sensitive   = true
+# }
 
-variable "db_password" {
-  description = "Database master password"
-  type        = string
-  sensitive   = true
-}
+# variable "db_password" {
+#   description = "Database master password"
+#   type        = string
+#   sensitive   = true
+# }
 
 # ==========================================
 # EC2 / ASG Configuration
