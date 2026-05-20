@@ -1,0 +1,45 @@
+name: AWS_Java_Application
+
+on:
+  push:
+    branches: 
+        - devops3
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: hashicorp/setup-terraform@v3
+
+      - name: Configure AWS
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Terraform Init
+        run: terraform -chdir=terraform init
+
+      # 🔥 AUTO DISCOVERY STEP
+      - name: Discover existing AWS resources
+        run: bash scripts/discover.sh
+
+      - name: Terraform Plan (safe mode)
+        run: terraform -chdir=terraform plan -detailed-exitcode
+        continue-on-error: true
+
+    #   - name: Manual Approval Gate
+    #     uses: trstringer/manual-approval@v1
+    #     with:
+    #       approvers: your-github-username
+
+      - name: Terraform Apply
+        run: terraform -chdir=terraform apply -auto-approve
+
+    #   - name:  Terraform destroy
+    #     run: terraform -chdir=terraform destroy -auto-approve
+        
