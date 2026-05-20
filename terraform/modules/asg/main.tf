@@ -13,21 +13,11 @@
 # ATTACH SSM POLICY
 # ==========================================
 
-resource "aws_iam_role_policy_attachment" "ssm" {
-  role = aws_iam_role.ec2_ssm_role.name
-
-  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
-}
 
 # ==========================================
 # INSTANCE PROFILE
 # ==========================================
 
-resource "aws_iam_instance_profile" "ec2_profile" {
-  name = "${var.environment}-ec2-profile"
-
-  role = aws_iam_role.ec2_ssm_role.name
-}
 
 # ==========================================
 # LAUNCH TEMPLATE
