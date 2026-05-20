@@ -34,7 +34,7 @@ module "rds" {
   source = "./modules/rds"
 
   environment         = var.environment
-  vpc_id             = module.vpc.vpc_id
+  # vpc_id             = module.vpc.vpc_id
   subnet_ids         = module.vpc.private_subnet_ids
   security_group_ids = [module.security.db_security_group_id]
   db_name            = var.db_name
@@ -67,11 +67,11 @@ module "asg" {
   desired_capacity  = var.asg_desired_capacity
 }
 
-# module "monitoring" {
-#   source = "./modules/monitoring"
+module "monitoring" {
+  source = "./modules/monitoring"
 
-#   environment     = var.environment
-#   rds_instance_id = module.rds.rds_instance_id
-#   asg_name        = module.asg.asg_name
+  environment     = var.environment
+  rds_instance_id = module.rds.rds_instance_id
+  asg_name        = module.asg.asg_name
  
-# }
+}
