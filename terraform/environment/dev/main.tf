@@ -39,7 +39,7 @@ module "rds" {
   username = "admin"
   password = "Abc123!@"
 
-  allowed_security_group_ids = [module.eks.cluster_security_group_id]
+  allowed_security_group_ids = [module.eks.node_security_group_id]
 }
 
 module "redis" {

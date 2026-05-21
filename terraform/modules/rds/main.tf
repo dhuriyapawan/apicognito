@@ -66,6 +66,6 @@ resource "aws_secretsmanager_secret_version" "db" {
 locals {
   db_secret = jsondecode(data.aws_secretsmanager_secret_version.db.secret_string)
 }
-data "aws_secretsmanager_secret_version" "db" {
-  secret_id = var.secret_arn
-}
+# data "aws_secretsmanager_secret_version" "db" {
+#   secret_id = var.secret_arn
+# }
