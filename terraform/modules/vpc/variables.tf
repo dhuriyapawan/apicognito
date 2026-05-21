@@ -14,10 +14,7 @@ variable "private_subnet_cidrs" {
   type = list(string)
 }
 
-variable "azs" {
-  type = list(string)
-}
 variable "availability_zones" {
-    type = string
-  
+  description = "List of availability zones"
+  type        = list(string)
 }

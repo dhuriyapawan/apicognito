@@ -12,7 +12,7 @@ private_subnet_cidrs = [
   "10.0.12.0/24"
 ]
 
-azs = [
-  "us-east-1a",
-  "us-east-1b"
+availability_zones = [
+  "us-east-1",
+  "us-east2"
 ]
