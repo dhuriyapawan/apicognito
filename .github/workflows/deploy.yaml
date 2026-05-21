@@ -43,7 +43,7 @@ jobs:
 
     # Plan
     - name: Terraform Plan
-      run: terraform -chdir=terraform/environment/dev plan -out=tfplan
+      run: terraform -chdir=terraform/environment/dev plan -out=tfplan -lock=false
 
     # Apply (only main branch)
     - name: Terraform Apply
