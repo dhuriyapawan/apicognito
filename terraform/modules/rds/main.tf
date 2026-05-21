@@ -48,13 +48,13 @@ resource "aws_db_instance" "this" {
     Environment = var.environment
   }
 }
-resource "aws_secretsmanager_secret" "db" {
-  name = "${var.name}-db-secret"
+# resource "aws_secretsmanager_secret" "db" {
+#   name = "${var.name}-db-secret"
 
-  tags = {
-    Environment = var.environment
-  }
-}
+#   tags = {
+#     Environment = var.environment
+#   }
+# }
 # resource "aws_secretsmanager_secret_version" "db" {
 #   secret_id = aws_secretsmanager_secret.db.id
 
