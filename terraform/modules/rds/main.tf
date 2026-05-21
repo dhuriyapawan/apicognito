@@ -55,17 +55,17 @@ resource "aws_secretsmanager_secret" "db" {
     Environment = var.environment
   }
 }
-resource "aws_secretsmanager_secret_version" "db" {
-  secret_id = aws_secretsmanager_secret.db.id
+# resource "aws_secretsmanager_secret_version" "db" {
+#   secret_id = aws_secretsmanager_secret.db.id
 
-  secret_string = jsonencode({
-    username = var.username
-    password = random_password.db.result
-  })
-}
-locals {
-  db_secret = jsondecode(data.aws_secretsmanager_secret_version.db.secret_string)
-}
-# data "aws_secretsmanager_secret_version" "db" {
-#   secret_id = var.secret_arn
+#   secret_string = jsonencode({
+#     username = var.username
+#     password = random_password.db.result
+#   })
 # }
+# locals {
+#   db_secret = jsondecode(data.aws_secretsmanager_secret_version.db.secret_string)
+# }
+# # data "aws_secretsmanager_secret_version" "db" {
+# #   secret_id = var.secret_arn
+# # }
