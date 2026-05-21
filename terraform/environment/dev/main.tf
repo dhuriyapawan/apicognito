@@ -52,7 +52,7 @@ module "redis" {
   private_subnet_ids = module.vpc.private_subnet_ids
 
   allowed_security_group_ids = [
-    module.eks.node_security_group_id
+    module.eks.cluster_security_group_id
   ]
 }
 
