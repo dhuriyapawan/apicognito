@@ -13,6 +13,6 @@ output "db_instance_id" {
 output "security_group_id" {
   value = aws_security_group.rds.id
 }
-output "secret_arn" {
-  value = aws_secretsmanager_secret.db.arn
-}
+# output "secret_arn" {
+#   value = aws_secretsmanager_secret.db.arn
+# }
