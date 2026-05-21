@@ -9,7 +9,7 @@ resource "aws_db_subnet_group" "this" {
 }
 
 resource "aws_db_instance" "this" {
-  identifier = var.name
+  identifier = lower(var.name)
 
   engine         = var.engine
   engine_version = var.engine_version
